@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="th">
 <head>
   <meta charset="UTF-8">
@@ -13,15 +13,16 @@
 
   <style>
     :root {
-      --primary-pink: #f48fb1;
-      --deep-pink: #ec407a;
+      --primary-pink: #f8bbd0;
+      --deep-pink: #f06292;
       --soft-pink: #fff0f5;
-      --border-pink: #ffd5e2;
-      --card-bg: rgba(255, 255, 255, 0.92);
-      --text-main: #4a3e3d;
-      --text-muted: #8e7c7e;
-      --kbank-green: #138f2d;
-      --truemoney-orange: #f37023;
+      --border-pink: #fce4ec;
+      --line-pink: #f8bbd0;
+      --card-bg: rgba(255, 255, 255, 0.94);
+      --text-main: #5c4349;
+      --text-muted: #9c8288;
+      --kbank-green: #52b788;
+      --truemoney-orange: #ff9f43;
     }
 
     * {
@@ -37,84 +38,99 @@
       color: var(--text-main);
       display: flex;
       justify-content: center;
-      padding: 24px 14px 60px;
+      padding: 20px 14px 70px;
       position: relative;
-      /* พื้นหลัง GIF ตามที่กำหนด */
-      background: url('https://i.ibb.co/9fpLNtL/8-EB5-DEC5-3945-481-E-826-D-9741-F61-AA908.gif') center center / cover no-repeat fixed;
+      background: #ffeef2;
     }
 
-    /* เลเยอร์กรองแสงนุ่มๆ ให้ตัวหนังสือนอ่านง่าย */
+    /* พื้นหลังสไตล์พาสเทลโปร่งนุ่ม */
     body::before {
       content: "";
       position: fixed;
       inset: 0;
-      background: rgba(255, 245, 248, 0.45);
-      backdrop-filter: blur(2px);
+      background: radial-gradient(circle at top, #fff5f8 0%, #ffedf2 60%, #ffe3eb 100%);
       z-index: 0;
       pointer-events: none;
     }
 
     .wrapper {
       width: 100%;
-      max-width: 410px;
+      max-width: 400px;
       position: relative;
       z-index: 1;
     }
 
-    /* การ์ดหลักด้านบน */
+    /* การ์ดด้านบน (มี Banner GIF อยู่บน และ Profile ซ้อนตรงกลาง) */
     .header-card {
       background: var(--card-bg);
       backdrop-filter: blur(14px);
-      border-radius: 28px;
-      padding: 22px 18px 20px;
+      border-radius: 30px;
+      padding: 12px 12px 22px;
       text-align: center;
-      border: 1.5px solid var(--border-pink);
-      box-shadow: 0 10px 28px rgba(244, 143, 177, 0.22);
-      margin-bottom: 16px;
+      border: 2px solid #fff;
+      box-shadow: 0 10px 28px rgba(248, 187, 208, 0.45);
+      margin-bottom: 14px;
+    }
+
+    .banner-container {
+      width: 100%;
+      height: 135px;
+      border-radius: 22px;
+      overflow: hidden;
+      position: relative;
+      background: #fff0f5;
+    }
+
+    .banner-gif {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .profile-wrap {
       position: relative;
+      margin-top: -46px;
       display: inline-block;
-      margin-bottom: 10px;
+      z-index: 2;
     }
 
     .profile-img {
-      width: 95px;
-      height: 95px;
+      width: 88px;
+      height: 88px;
       border-radius: 50%;
       object-fit: cover;
-      border: 3.5px solid #fff;
-      box-shadow: 0 6px 18px rgba(236, 64, 122, 0.25);
+      border: 4px solid #ffffff;
+      box-shadow: 0 6px 18px rgba(240, 98, 146, 0.28);
       background: #fff;
     }
 
     .page-title {
-      font-size: 20px;
+      font-size: 19px;
       font-weight: 700;
       color: var(--deep-pink);
-      letter-spacing: 0.5px;
+      letter-spacing: 0.3px;
+      margin-top: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
+      gap: 5px;
     }
 
-    /* ปุ่มเพลง */
+    /* ปุ่มเพลงสีพาสเทลนุ่ม */
     .music-btn {
       display: inline-flex;
       align-items: center;
       gap: 6px;
       margin-top: 10px;
       background: #ffffff;
-      border: 1.5px solid var(--border-pink);
+      border: 1.5px solid var(--primary-pink);
       color: var(--deep-pink);
-      padding: 6px 16px;
+      padding: 5px 16px;
       border-radius: 20px;
-      font-size: 13px;
+      font-size: 12.5px;
       font-weight: 600;
       cursor: pointer;
-      box-shadow: 0 4px 10px rgba(244, 143, 177, 0.15);
+      box-shadow: 0 4px 12px rgba(248, 187, 208, 0.35);
       transition: all 0.2s ease;
     }
 
@@ -122,14 +138,14 @@
       transform: scale(0.96);
     }
 
-    /* การ์ดธนาคาร & วอลเล็ต */
+    /* การ์ดบัญชีธนาคาร & วอลเล็ต */
     .account-card {
       background: var(--card-bg);
       backdrop-filter: blur(12px);
-      border-radius: 22px;
-      padding: 16px 18px;
-      border: 1.5px solid var(--border-pink);
-      box-shadow: 0 6px 20px rgba(244, 143, 177, 0.14);
+      border-radius: 24px;
+      padding: 14px 18px;
+      border: 2px solid #fff;
+      box-shadow: 0 8px 24px rgba(248, 187, 208, 0.35);
       margin-bottom: 12px;
       display: flex;
       align-items: center;
@@ -144,7 +160,8 @@
       left: 0;
       top: 0;
       bottom: 0;
-      width: 6px;
+      width: 5px;
+      border-radius: 4px 0 0 4px;
     }
 
     .account-card.kbank::before { background: var(--kbank-green); }
@@ -153,11 +170,11 @@
     .acc-details {
       display: flex;
       flex-direction: column;
-      gap: 3px;
+      gap: 2px;
     }
 
     .acc-bank-name {
-      font-size: 12.5px;
+      font-size: 12px;
       font-weight: 600;
       display: flex;
       align-items: center;
@@ -168,63 +185,65 @@
     .account-card.truemoney .acc-bank-name { color: var(--truemoney-orange); }
 
     .acc-number {
-      font-size: 17px;
+      font-size: 16.5px;
       font-weight: 700;
-      color: var(--text-main);
+      color: #3b2c30;
       letter-spacing: 0.6px;
     }
 
     .acc-owner {
-      font-size: 12px;
+      font-size: 11.5px;
       color: var(--text-muted);
     }
 
+    /* ปุ่มคัดลอกแบบมนนุ่ม */
     .copy-btn {
       background: #ffffff;
-      border: 1.5px solid var(--border-pink);
+      border: 1.5px solid var(--primary-pink);
       color: var(--deep-pink);
       padding: 6px 14px;
-      border-radius: 16px;
-      font-size: 12.5px;
+      border-radius: 18px;
+      font-size: 12px;
       font-weight: 600;
       cursor: pointer;
       display: flex;
       align-items: center;
       gap: 4px;
-      box-shadow: 0 2px 8px rgba(244, 143, 177, 0.12);
+      box-shadow: 0 2px 8px rgba(248, 187, 208, 0.25);
       transition: all 0.2s ease;
       white-space: nowrap;
     }
 
     .copy-btn:active {
       transform: scale(0.92);
-      background: var(--soft-pink);
+      background: #fff5f8;
     }
 
-    /* กล่องข้อความโน้ตสลิป */
+    /* กล่องโน้ตสลิปขอบหยักพาสเทลน่ารัก (Scallop / Stamp Border) */
     .note-card {
       background: var(--card-bg);
       backdrop-filter: blur(12px);
-      border-radius: 22px;
-      padding: 16px 18px;
-      border: 1.5px dashed var(--border-pink);
-      box-shadow: 0 6px 18px rgba(244, 143, 177, 0.12);
+      border-radius: 24px;
+      padding: 18px 16px;
+      border: 2px dashed #f8bbd0;
+      box-shadow: 0 8px 24px rgba(248, 187, 208, 0.3);
       text-align: center;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
       line-height: 1.7;
-      font-size: 13.5px;
-      color: #5c474c;
+      font-size: 13px;
+      color: #634d53;
       white-space: pre-line;
+      position: relative;
     }
 
     /* การ์ดสแกนจ่าย QR Code */
     .qr-card {
       background: var(--card-bg);
       backdrop-filter: blur(14px);
-      border-radius: 26px;
-      padding: 22px 18px;
-      border: 1.5px solid var(--border-pink);
-      box-shadow: 0 10px 28px rgba(244, 143, 177, 0.18);
+      border-radius: 28px;
+      padding: 20px 18px;
+      border: 2px solid #fff;
+      box-shadow: 0 10px 28px rgba(248, 187, 208, 0.4);
       text-align: center;
     }
 
@@ -232,21 +251,20 @@
       font-size: 15px;
       font-weight: 700;
       color: var(--deep-pink);
-      margin-bottom: 4px;
+      margin-bottom: 3px;
     }
 
     .qr-sub {
       font-size: 12px;
       color: var(--text-muted);
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
-    /* ช่องกรอกจำนวนเงิน */
     .amount-display-box {
-      background: #fff;
-      border: 1.5px solid var(--border-pink);
+      background: #ffffff;
+      border: 1.5px solid var(--primary-pink);
       border-radius: 20px;
-      padding: 10px 16px;
+      padding: 8px 16px;
       margin-bottom: 12px;
       display: flex;
       align-items: center;
@@ -266,12 +284,11 @@
     }
 
     .amount-unit {
-      font-size: 14px;
+      font-size: 13.5px;
       font-weight: 600;
       color: var(--text-muted);
     }
 
-    /* ปุ่มยอดเงินสำเร็จรูป */
     .quick-amounts {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -281,13 +298,14 @@
 
     .quick-btn {
       background: #ffffff;
-      border: 1px solid var(--border-pink);
+      border: 1.5px solid #fce4ec;
       color: var(--deep-pink);
       padding: 7px 0;
       border-radius: 14px;
-      font-size: 12.5px;
+      font-size: 12px;
       font-weight: 600;
       cursor: pointer;
+      box-shadow: 0 2px 6px rgba(248, 187, 208, 0.15);
       transition: all 0.15s ease;
     }
 
@@ -301,31 +319,30 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 8px;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
 
     .btn-clear {
-      background: #fff5f7;
-      border: 1px solid var(--border-pink);
-      color: #887277;
+      background: #fff5f8;
+      border: 1.5px solid #fce4ec;
+      color: #9c8288;
       padding: 7px 0;
       border-radius: 14px;
-      font-size: 12.5px;
+      font-size: 12px;
       font-weight: 600;
       cursor: pointer;
     }
 
-    /* กล่องแสดง QR Code */
     .qr-container {
       background: #ffffff;
-      border: 1.5px solid var(--border-pink);
-      border-radius: 20px;
+      border: 1.5px solid var(--primary-pink);
+      border-radius: 22px;
       padding: 16px;
       display: inline-flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 4px 14px rgba(244, 143, 177, 0.15);
+      box-shadow: 0 6px 18px rgba(248, 187, 208, 0.25);
       margin-bottom: 12px;
     }
 
@@ -339,18 +356,18 @@
     }
 
     .qr-info-note {
-      font-size: 12px;
+      font-size: 11.5px;
       color: var(--text-muted);
-      line-height: 1.5;
+      line-height: 1.6;
     }
 
-    /* Toast Notification (แจ้งเตือนเมื่อคัดลอก) */
+    /* Toast แจ้งเตือนเมื่อกดคัดลอก */
     .toast {
       position: fixed;
       bottom: 24px;
       left: 50%;
       transform: translateX(-50%) translateY(80px);
-      background: rgba(40, 30, 33, 0.88);
+      background: rgba(60, 40, 46, 0.88);
       backdrop-filter: blur(8px);
       color: #fff;
       padding: 9px 20px;
@@ -370,13 +387,16 @@
 </head>
 <body>
 
-  <!-- เพลงพื้นหลัง -->
+  <!-- เพลงพื้นหลังตามลิงก์ที่ให้มา -->
   <audio id="bgMusic" loop autoplay playsinline src="https://files.catbox.moe/4d3gvj.mp3"></audio>
 
   <div class="wrapper">
 
-    <!-- การ์ดโปรไฟล์ด้านบน -->
+    <!-- การ์ดส่วนหัว: แบนเนอร์ GIF อยู่ด้านบน และมีโปรไฟล์ซ้อนอยู่กึ่งกลาง -->
     <div class="header-card">
+      <div class="banner-container">
+        <img src="https://i.ibb.co/9fpLNtL/8-EB5-DEC5-3945-481-E-826-D-9741-F61-AA908.gif" alt="Banner GIF" class="banner-gif">
+      </div>
       <div class="profile-wrap">
         <img src="https://i.ibb.co/LXkTr7s2/line-oa-chat-260930-205852.jpg" alt="Shernice" class="profile-img">
       </div>
@@ -390,7 +410,7 @@
     <div class="account-card kbank">
       <div class="acc-details">
         <div class="acc-bank-name">🏛️ ธนาคารกสิกรไทย</div>
-        <div class="acc-number" id="kbankNum">199-1-71677-3</div>
+        <div class="acc-number">199-1-71677-3</div>
         <div class="acc-owner">พร้อมเพย์ / กสิกรไทย</div>
       </div>
       <button type="button" class="copy-btn" onclick="copyText('1991716773', 'คัดลอกเลขบัญชีกสิกรไทยแล้วค่ะ ♡')">
@@ -398,11 +418,11 @@
       </button>
     </div>
 
-    <!-- TrueMoney Wallet -->
+    <!-- บัญชี TrueMoney Wallet -->
     <div class="account-card truemoney">
       <div class="acc-details">
         <div class="acc-bank-name">📱 TrueMoney Wallet</div>
-        <div class="acc-number" id="walletNum">096-269-4483</div>
+        <div class="acc-number">096-269-4483</div>
         <div class="acc-owner">ทรูมันนี่ วอลเล็ท</div>
       </div>
       <button type="button" class="copy-btn" onclick="copyText('0962694483', 'คัดลอกเบอร์ TrueMoney Wallet แล้วค่ะ ♡')">
@@ -410,7 +430,7 @@
       </button>
     </div>
 
-    <!-- กล่องข้อความแจ้งเตือนโน้ตสลิปตามที่คุณระบุ -->
+    <!-- กล่องข้อความโน้ตสลิปขอบหยักพาสเทล -->
     <div class="note-card">
 𓈒[ׅ ཾ♡༷🎀𐄙     รּׅบกวน݁โน๊ต݂สลิ݁ป𓈒𓂂
 ⠀ ⠀⠀ ⠀⠀ ⠀⠀ ⠀⠀ ⠀⠀  𓈒ཾּ𓋰̶𐄙ׅׄ֯𐀫𓈒ཾ
@@ -420,7 +440,7 @@
 โดน݁แอบอ้าง݂ค่ะ
     </div>
 
-    <!-- กล่องสร้าง PromptPay QR Code ระบุยอดเงิน -->
+    <!-- การ์ดสร้าง PromptPay QR Code ระบุยอดเงิน -->
     <div class="qr-card">
       <div class="qr-title">💳 Payment QR Code</div>
       <div class="qr-sub">กรอกยอดเงินที่ต้องการชำระ (บาท)</div>
@@ -430,7 +450,6 @@
         <span class="amount-unit">บาท</span>
       </div>
 
-      <!-- ปุ่มลัดยอดเงิน -->
       <div class="quick-amounts">
         <button type="button" class="quick-btn" onclick="addAmount(50)">+50</button>
         <button type="button" class="quick-btn" onclick="addAmount(100)">+100</button>
@@ -443,7 +462,6 @@
         <button type="button" class="btn-clear" onclick="clearAmount()">ล้าง</button>
       </div>
 
-      <!-- แสดงภาพ QR Code -->
       <div class="qr-container">
         <div id="qrcode"></div>
       </div>
@@ -456,13 +474,11 @@
 
   </div>
 
-  <!-- Toast แจ้งเตือนคัดลอก -->
+  <!-- Toast แจ้งเตือนเมื่อคัดลอกสำเร็จ -->
   <div class="toast" id="toastBox">คัดลอกเรียบร้อยแล้วค่ะ ♡</div>
 
   <script>
-    // -------------------------------------------------------------
-    // 1. ควบคุมเพลงเล่นอัตโนมัติ (และกดสลับเปิด-ปิดได้)
-    // -------------------------------------------------------------
+    // 1. ควบคุมเพลง
     const music = document.getElementById('bgMusic');
     const musicIcon = document.getElementById('musicIcon');
     const musicText = document.getElementById('musicText');
@@ -472,7 +488,6 @@
         musicIcon.textContent = "❚❚";
         musicText.textContent = "pause music";
       }).catch(() => {
-        // เบราว์เซอร์บล็อก Autoplay รอคลิกครั้งแรก
         musicIcon.textContent = "▶";
         musicText.textContent = "play music !";
       });
@@ -499,9 +514,7 @@
       }, { once: true });
     });
 
-    // -------------------------------------------------------------
-    // 2. ระบบคัดลอกข้อความ + แสดง Toast
-    // -------------------------------------------------------------
+    // 2. ฟังก์ชันคัดลอกข้อความ
     function copyText(text, msg) {
       if (navigator.clipboard && window.isSecureContext) {
         navigator.clipboard.writeText(text);
@@ -513,7 +526,6 @@
         document.execCommand("copy");
         document.body.removeChild(temp);
       }
-
       showToast(msg);
     }
 
@@ -526,13 +538,9 @@
       }, 2000);
     }
 
-    // -------------------------------------------------------------
-    // 3. ระบบสร้าง PromptPay QR Code ตามมาตรฐาน EMVCo
-    // -------------------------------------------------------------
-    const PROMPTPAY_PHONE = "0962694483"; // เบอร์พร้อมเพย์
-    let qrGenerator = null;
+    // 3. ระบบสร้าง PromptPay QR Code (EMVCo Standard)
+    const PROMPTPAY_PHONE = "0962694483";
 
-    // คำนวณ CRC16 Checksum สำหรับ PromptPay
     function crc16(data) {
       let crc = 0xFFFF;
       for (let i = 0; i < data.length; i++) {
@@ -553,9 +561,7 @@
       return id + len + val;
     }
 
-    // สร้างข้อมูล PromptPay Payload
     function generatePromptPayPayload(phone, amount) {
-      // ปรับรูปแบบเบอร์โทรเป็นรูปแบบสากล 0066...
       let target = phone.replace(/[^0-9]/g, '');
       if (target.startsWith('0')) {
         target = '0066' + target.substring(1);
@@ -565,11 +571,11 @@
       const merchantInfo = formatField('29', merchantSub);
 
       let payload = 
-        formatField('00', '01') + // Payload Format Indicator
-        formatField('01', amount > 0 ? '12' : '11') + // 12 = Dynamic (มียอดเงิน), 11 = Static (ไม่มียอดเงิน)
+        formatField('00', '01') + 
+        formatField('01', amount > 0 ? '12' : '11') + 
         merchantInfo +
-        formatField('53', '764') + // THB Currency Code
-        formatField('58', 'TH');   // Country Code
+        formatField('53', '764') + 
+        formatField('58', 'TH');
 
       if (amount > 0) {
         payload += formatField('54', amount.toFixed(2));
@@ -583,11 +589,11 @@
     function renderQR(text) {
       const qrElement = document.getElementById("qrcode");
       qrElement.innerHTML = "";
-      qrGenerator = new QRCode(qrElement, {
+      new QRCode(qrElement, {
         text: text,
         width: 175,
         height: 175,
-        colorDark: "#222222",
+        colorDark: "#2d2427",
         colorLight: "#ffffff",
         correctLevel: QRCode.CorrectLevel.M
       });
@@ -616,7 +622,6 @@
       updateQRCode();
     }
 
-    // สร้าง QR Code เริ่มต้นทันทีเมื่อโหลดหน้าเว็บ
     window.addEventListener('load', () => {
       updateQRCode();
     });
