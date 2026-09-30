@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="th">
 <head>
   <meta charset="UTF-8">
@@ -17,7 +17,6 @@
       --deep-pink: #f06292;
       --soft-pink: #fff0f5;
       --border-pink: #fce4ec;
-      --line-pink: #f8bbd0;
       --card-bg: rgba(255, 255, 255, 0.94);
       --text-main: #5c4349;
       --text-muted: #9c8288;
@@ -43,7 +42,6 @@
       background: #ffeef2;
     }
 
-    /* พื้นหลังสไตล์พาสเทลโปร่งนุ่ม */
     body::before {
       content: "";
       position: fixed;
@@ -60,7 +58,7 @@
       z-index: 1;
     }
 
-    /* การ์ดด้านบน (มี Banner GIF อยู่บน และ Profile ซ้อนตรงกลาง) */
+    /* Header Profile & GIF Banner */
     .header-card {
       background: var(--card-bg);
       backdrop-filter: blur(14px);
@@ -116,7 +114,6 @@
       gap: 5px;
     }
 
-    /* ปุ่มเพลงสีพาสเทลนุ่ม */
     .music-btn {
       display: inline-flex;
       align-items: center;
@@ -138,7 +135,7 @@
       transform: scale(0.96);
     }
 
-    /* การ์ดบัญชีธนาคาร & วอลเล็ต */
+    /* Account Cards */
     .account-card {
       background: var(--card-bg);
       backdrop-filter: blur(12px);
@@ -196,7 +193,6 @@
       color: var(--text-muted);
     }
 
-    /* ปุ่มคัดลอกแบบมนนุ่ม */
     .copy-btn {
       background: #ffffff;
       border: 1.5px solid var(--primary-pink);
@@ -219,7 +215,7 @@
       background: #fff5f8;
     }
 
-    /* กล่องโน้ตสลิปขอบหยักพาสเทลน่ารัก (Scallop / Stamp Border) */
+    /* Note Slip Stamp Card */
     .note-card {
       background: var(--card-bg);
       backdrop-filter: blur(12px);
@@ -233,10 +229,9 @@
       font-size: 13px;
       color: #634d53;
       white-space: pre-line;
-      position: relative;
     }
 
-    /* การ์ดสแกนจ่าย QR Code */
+    /* QR Code Card */
     .qr-card {
       background: var(--card-bg);
       backdrop-filter: blur(14px);
@@ -361,7 +356,7 @@
       line-height: 1.6;
     }
 
-    /* Toast แจ้งเตือนเมื่อกดคัดลอก */
+    /* Toast */
     .toast {
       position: fixed;
       bottom: 24px;
@@ -387,12 +382,12 @@
 </head>
 <body>
 
-  <!-- เพลงพื้นหลังตามลิงก์ที่ให้มา -->
+  <!-- Audio -->
   <audio id="bgMusic" loop autoplay playsinline src="https://files.catbox.moe/4d3gvj.mp3"></audio>
 
   <div class="wrapper">
 
-    <!-- การ์ดส่วนหัว: แบนเนอร์ GIF อยู่ด้านบน และมีโปรไฟล์ซ้อนอยู่กึ่งกลาง -->
+    <!-- Header & GIF Banner & Profile -->
     <div class="header-card">
       <div class="banner-container">
         <img src="https://i.ibb.co/9fpLNtL/8-EB5-DEC5-3945-481-E-826-D-9741-F61-AA908.gif" alt="Banner GIF" class="banner-gif">
@@ -406,7 +401,7 @@
       </button>
     </div>
 
-    <!-- บัญชีกสิกรไทย -->
+    <!-- บัญชีกสิกรไทย (ปุ่มคัดลอกคัดลอกเฉพาะเลขบัญชี) -->
     <div class="account-card kbank">
       <div class="acc-details">
         <div class="acc-bank-name">🏛️ ธนาคารกสิกรไทย</div>
@@ -418,7 +413,7 @@
       </button>
     </div>
 
-    <!-- บัญชี TrueMoney Wallet -->
+    <!-- TrueMoney Wallet (ปุ่มคัดลอกคัดลอกเฉพาะเบอร์วอลเล็ต) -->
     <div class="account-card truemoney">
       <div class="acc-details">
         <div class="acc-bank-name">📱 TrueMoney Wallet</div>
@@ -430,7 +425,7 @@
       </button>
     </div>
 
-    <!-- กล่องข้อความโน้ตสลิปขอบหยักพาสเทล -->
+    <!-- กล่องข้อความโน้ตสลิป -->
     <div class="note-card">
 𓈒[ׅ ཾ♡༷🎀𐄙     รּׅบกวน݁โน๊ต݂สลิ݁ป𓈒𓂂
 ⠀ ⠀⠀ ⠀⠀ ⠀⠀ ⠀⠀ ⠀⠀  𓈒ཾּ𓋰̶𐄙ׅׄ֯𐀫𓈒ཾ
@@ -440,7 +435,7 @@
 โดน݁แอบอ้าง݂ค่ะ
     </div>
 
-    <!-- การ์ดสร้าง PromptPay QR Code ระบุยอดเงิน -->
+    <!-- กล่องสร้าง PromptPay QR Code ระบุยอดเงิน -->
     <div class="qr-card">
       <div class="qr-title">💳 Payment QR Code</div>
       <div class="qr-sub">กรอกยอดเงินที่ต้องการชำระ (บาท)</div>
@@ -474,11 +469,10 @@
 
   </div>
 
-  <!-- Toast แจ้งเตือนเมื่อคัดลอกสำเร็จ -->
   <div class="toast" id="toastBox">คัดลอกเรียบร้อยแล้วค่ะ ♡</div>
 
   <script>
-    // 1. ควบคุมเพลง
+    // เพลง
     const music = document.getElementById('bgMusic');
     const musicIcon = document.getElementById('musicIcon');
     const musicText = document.getElementById('musicText');
@@ -514,7 +508,7 @@
       }, { once: true });
     });
 
-    // 2. ฟังก์ชันคัดลอกข้อความ
+    // คัดลอกเฉพาะเลข
     function copyText(text, msg) {
       if (navigator.clipboard && window.isSecureContext) {
         navigator.clipboard.writeText(text);
@@ -538,7 +532,7 @@
       }, 2000);
     }
 
-    // 3. ระบบสร้าง PromptPay QR Code (EMVCo Standard)
+    // QR Code PromptPay
     const PROMPTPAY_PHONE = "0962694483";
 
     function crc16(data) {
