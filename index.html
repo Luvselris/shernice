@@ -13,7 +13,7 @@
 
   <style>
     :root {
-      /* โทนสีฟ้าหิมะ มิดไนท์บลูพาสเทล ตามภาพ */
+      /* โทนสี Snowy Moonlight ตามภาพ */
       --ice-blue: #d4eaf7;
       --soft-cyan: #b6dcf2;
       --deep-midnight: #3a506b;
@@ -129,7 +129,7 @@
       transform: scale(0.96);
     }
 
-    /* 2. Account Cards */
+    /* 2. Account & Name Cards */
     .account-card {
       background: var(--card-bg);
       backdrop-filter: blur(12px);
@@ -155,6 +155,7 @@
 
     .account-card.kbank::before { background: var(--kbank-green); }
     .account-card.truemoney::before { background: var(--truemoney-orange); }
+    .account-card.owner-box::before { background: var(--accent-glow); }
 
     .acc-details {
       display: flex;
@@ -172,6 +173,7 @@
 
     .account-card.kbank .acc-bank-name { color: var(--kbank-green); }
     .account-card.truemoney .acc-bank-name { color: var(--truemoney-orange); }
+    .account-card.owner-box .acc-bank-name { color: var(--deep-midnight); }
 
     .acc-number {
       font-size: 16.5px;
@@ -183,6 +185,14 @@
     .acc-owner {
       font-size: 11px;
       color: var(--text-muted);
+    }
+
+    /* กล่องชื่อบัญชี (ไม่มีปุ่มคัดลอก) */
+    .owner-name-text {
+      font-size: 15.5px;
+      font-weight: 700;
+      color: var(--deep-midnight);
+      margin-top: 2px;
     }
 
     .copy-btn {
@@ -470,7 +480,16 @@
       </button>
     </div>
 
-    <!-- 4. กล่องข้อความโน้ตสลิปขอบหยักแสตมป์ -->
+    <!-- 4. กล่องชื่อบัญชี (แยกกล่องชัดเจน และไม่มีปุ่มคัดลอก) -->
+    <div class="account-card owner-box">
+      <div class="acc-details">
+        <div class="acc-bank-name">👤 ชื่อบัญชี / Account Name</div>
+        <div class="owner-name-text">ณัฐนันท์ เอี่ยมเฟื่อง</div>
+        <div class="acc-owner">ตรวจสอบชื่อบัญชีก่อนกดยืนยันการโอนเงินนะคะ 🤍</div>
+      </div>
+    </div>
+
+    <!-- 5. กล่องข้อความโน้ตสลิปขอบหยักแสตมป์ -->
     <div class="note-card">
 𓈒[ׅ ཾ♡༷🎀𐄙     รּׅบกวน݁โน๊ต݂สลิ݁ป𓈒𓂂
 ⠀ ⠀⠀ ⠀⠀ ⠀⠀ ⠀⠀ ⠀⠀  𓈒ཾּ𓋰̶𐄙ׅׄ֯𐀫𓈒ཾ
@@ -480,13 +499,13 @@
 โดน݁แอบอ้าง݂ค่ะ
     </div>
 
-    <!-- 5. ปุ่มไลน์ร้านค้า -->
+    <!-- 6. ปุ่มไลน์ร้านค้า -->
     <a href="https://line.me/R/ti/p/@832rjuhx" target="_blank" class="line-btn-card">
       <span class="line-icon-badge">LINE</span>
       <span>ซื้อขายกับ line <span class="line-target-id">@832rjuhx</span></span>
     </a>
 
-    <!-- 6. Payment QR Code ตามยอดเงิน -->
+    <!-- 7. Payment QR Code ตามยอดเงิน -->
     <div class="qr-card">
       <div class="qr-title">💳 Payment QR Code</div>
       <div class="qr-sub">กรอกยอดเงินที่ต้องการชำระ (บาท)</div>
@@ -565,7 +584,7 @@
       }, { once: true });
     });
 
-    // คัดลอก
+    // คัดลอกเฉพาะเลข
     function copyText(text, msg) {
       if (navigator.clipboard && window.isSecureContext) {
         navigator.clipboard.writeText(text);
