@@ -13,7 +13,7 @@
 
   <style>
     :root {
-      /* โทนสี Snowy Moonlight ตามภาพ */
+      /* โทนสี Snowy Moonlight Pastel ตามภาพ */
       --ice-blue: #d4eaf7;
       --soft-cyan: #b6dcf2;
       --deep-midnight: #3a506b;
@@ -22,8 +22,6 @@
       --border-color: #c5e1f5;
       --text-main: #2b3a4a;
       --text-muted: #6c8299;
-      --kbank-green: #38b000;
-      --truemoney-orange: #ff922b;
       --line-green: #06c755;
     }
 
@@ -129,7 +127,7 @@
       transform: scale(0.96);
     }
 
-    /* 2. Account & Name Cards */
+    /* 2. Account & Name Cards (คุมโทนสีตามธีม) */
     .account-card {
       background: var(--card-bg);
       backdrop-filter: blur(12px);
@@ -151,11 +149,8 @@
       top: 0;
       bottom: 0;
       width: 5px;
+      background: var(--soft-cyan);
     }
-
-    .account-card.kbank::before { background: var(--kbank-green); }
-    .account-card.truemoney::before { background: var(--truemoney-orange); }
-    .account-card.owner-box::before { background: var(--accent-glow); }
 
     .acc-details {
       display: flex;
@@ -163,17 +158,15 @@
       gap: 2px;
     }
 
+    /* สีชื่อธนาคาร / วอลเล็ต / หัวข้อชื่อบัญชี ให้เป็นโทนมิดไนท์บลูพาสเทลตามธีม */
     .acc-bank-name {
-      font-size: 12px;
+      font-size: 12.5px;
       font-weight: 600;
       display: flex;
       align-items: center;
       gap: 5px;
+      color: var(--deep-midnight);
     }
-
-    .account-card.kbank .acc-bank-name { color: var(--kbank-green); }
-    .account-card.truemoney .acc-bank-name { color: var(--truemoney-orange); }
-    .account-card.owner-box .acc-bank-name { color: var(--deep-midnight); }
 
     .acc-number {
       font-size: 16.5px;
@@ -187,7 +180,6 @@
       color: var(--text-muted);
     }
 
-    /* กล่องชื่อบัญชี (ไม่มีปุ่มคัดลอก) */
     .owner-name-text {
       font-size: 15.5px;
       font-weight: 700;
@@ -450,14 +442,14 @@
       <div class="profile-wrap">
         <img src="https://i.ibb.co/LXkTr7s2/line-oa-chat-260930-205852.jpg" alt="Shernice" class="profile-img">
       </div>
-      <div class="page-title">Payment Shernice ❄️</div>
+      <div class="page-title">Payment Shernice ❄️️</div>
       <button type="button" class="music-btn" id="musicToggleBtn" onclick="toggleMusic()">
         <span id="musicIcon">▶</span> <span id="musicText">play music !</span>
       </button>
     </div>
 
-    <!-- 2. ธนาคารกสิกรไทย (ปุ่มคัดลอกเฉพาะเลข) -->
-    <div class="account-card kbank">
+    <!-- 2. ธนาคารกสิกรไทย (ชื่อธนาคารสีมิดไนท์บลูพาสเทลตามธีม + ปุ่มคัดลอกเฉพาะเลข) -->
+    <div class="account-card">
       <div class="acc-details">
         <div class="acc-bank-name">🏛️ ธนาคารกสิกรไทย</div>
         <div class="acc-number">199-1-71677-3</div>
@@ -468,8 +460,8 @@
       </button>
     </div>
 
-    <!-- 3. TrueMoney Wallet (ปุ่มคัดลอกเฉพาะเลข) -->
-    <div class="account-card truemoney">
+    <!-- 3. TrueMoney Wallet (ชื่อวอลเล็ตสีมิดไนท์บลูพาสเทลตามธีม + ปุ่มคัดลอกเฉพาะเลข) -->
+    <div class="account-card">
       <div class="acc-details">
         <div class="acc-bank-name">📱 TrueMoney Wallet</div>
         <div class="acc-number">096-269-4483</div>
@@ -480,12 +472,13 @@
       </button>
     </div>
 
-    <!-- 4. กล่องชื่อบัญชี (แยกกล่องชัดเจน และไม่มีปุ่มคัดลอก) -->
-    <div class="account-card owner-box">
+    <!-- 4. กล่องชื่อบัญชี: ปิ่นจุฑา (ไม่มีปุ่มคัดลอก) -->
+    <div class="account-card">
       <div class="acc-details">
-        <div class="acc-bank-name"> Account Name</div>
-        <div class="owner-name-text">น.ส ปิ่นจุฑา ฟุ้งสกุล</div>
-    </div>
+        <div class="acc-bank-name">👤 ชื่อบัญชี / Account Name</div>
+        <div class="owner-name-text">ปิ่นจุฑา</div>
+        <div class="acc-owner">ตรวจสอบชื่อบัญชีก่อนกดยืนยันการโอนเงินนะคะ 🤍</div>
+      </div>
     </div>
 
     <!-- 5. กล่องข้อความโน้ตสลิปขอบหยักแสตมป์ -->
@@ -547,7 +540,7 @@
   <div class="toast" id="toastBox">คัดลอกเรียบร้อยแล้วค่ะ ♡</div>
 
   <script>
-    // เพลง
+    // 1. ควบคุมเพลง
     const music = document.getElementById('bgMusic');
     const musicIcon = document.getElementById('musicIcon');
     const musicText = document.getElementById('musicText');
@@ -583,7 +576,7 @@
       }, { once: true });
     });
 
-    // คัดลอกเฉพาะเลข
+    // 2. คัดลอกเฉพาะเลข
     function copyText(text, msg) {
       if (navigator.clipboard && window.isSecureContext) {
         navigator.clipboard.writeText(text);
@@ -607,7 +600,7 @@
       }, 2000);
     }
 
-    // PromptPay QR Code
+    // 3. PromptPay QR Code (EMVCo Standard)
     const PROMPTPAY_PHONE = "0962694483";
 
     function crc16(data) {
